@@ -1,0 +1,13 @@
+{
+  "name": "fumiya-plugins",
+  "owner": {
+    "name": "fumiya"
+  },
+  "plugins": [
+    {
+      "name": "what-why",
+      "source": "./",
+      "description": "コミット単位で What/Why を確定・記録する開発ワークフロー"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# what-why: commit-msg hook — commit メッセージに What/Why 構造があるか検証する。
+# 設置: what-why-init スキルが各リポジトリの .husky/commit-msg（または
+#       .githooks/commit-msg）にこのファイルをコピーする。
+
+set -euo pipefail
+
+msg_file="$1"
+msg=$(cat "$msg_file")
+
+# マージ・revert・fixup/squash コミットは検証しない
+first_line=$(printf '%s\n' "$msg" | head -n1)
+case "$first_line" in
+  "Merge "*|"Revert "*|"fixup! "*|"squash! "*) exit 0 ;;
+esac
+
+# コメント行（#）を除いて What: / Why: 行を数える
+content=$(printf '%s\n' "$msg" | grep -v '^#' || true)
+what_count=$(printf '%s\n' "$content" | grep -c '^What:[[:space:]]*[^[:space:]]' || true)
+why_count=$(printf '%s\n' "$content" | grep -c '^Why:[[:space:]]*[^[:space:]]' || true)
+
+fail() {
+  {
+    echo "✗ commit 却下: $1"
+    echo ""
+    echo "commit メッセージは次の構造を含めてください:"
+    echo ""
+    echo "  <要約>"
+    echo ""
+    echo "  What: <この commit で達成したこと（1つだけ）>"
+    echo "  Why:  <理由 / 自明なら「なし」>"
+  } >&2
+  exit 1
+}
+
+[ "$what_count" -ge 1 ] || fail "What: 行がありません"
+[ "$why_count" -ge 1 ]  || fail "Why: 行がありません"
+[ "$what_count" -le 1 ] || fail "What: 行が複数あります（1 commit = 1 What）。commit を分割してください"
+
+exit 0
