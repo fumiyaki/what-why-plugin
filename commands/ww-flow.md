@@ -1,5 +1,5 @@
 ---
-description: Issue を grill-with-docs で詰め、What/Why を抽出して WHAT-WHY.md 台帳に記録する開発ワークフロー。
+description: Issue を grill-with-docs で詰め、What/Why を台帳に記録し、実装ループから tmp クリーンアップまでを束ねる開発ワークフロー。
 argument-hint: "[Issue の URL / 番号 / 自由記述]"
 ---
 
@@ -37,13 +37,14 @@ grill 完了後、grill の成果を仕分ける。
    へ書き出す。grill-with-docs が同ファイルへ書いた ADR と合わせ、tmp が実装ループの
    作業バッファになる。
 
-## 実装ループ
+## Phase C — 実装ループ
 
+Phase B で台帳の「やること（進行中）」へ積んだ What を、上から順に処理する。
 「やること」の What を1つずつ実装する。1 What 実装したら commit する。
 commit の作法は `what-why` スキルおよび `COMMIT-FORMAT.md` に従う。
 commit 後、その項目を台帳の「やること」から「やったこと」へ移す。
 
-## クリーンアップ
+## Phase D — クリーンアップ
 
 Issue の全 What を commit し終えたら `what-why/tmp/` ディレクトリを削除する。
 永続記録は commit メッセージ（git log）に残る。
