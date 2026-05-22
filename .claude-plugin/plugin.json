@@ -1,7 +1,7 @@
 {
   "name": "what-why",
   "version": "0.1.0",
-  "description": "コミット単位で What/Why を確定・記録する開発ワークフロー。What確定フェーズ、commit-msg 検証、WHAT-WHY.md 管理を提供する。",
+  "description": "Issue を grill で詰めてから What/Why を確定・記録する開発ワークフロー。grill-with-docs による仕様理解、/ww-flow コマンド、WHAT-WHY.md 台帳管理を提供する。",
   "author": {
     "name": "fumiya"
   },
