@@ -37,9 +37,9 @@ Issue を **grill（質問攻め）** で詰めてから、**What（やること
    `CONTEXT.md` に育つ。
 2. **Phase B — 抽出**: grill の理解から What/Why を抽出し `WHAT-WHY.md` へ、How は
    `what-why/tmp/` へ。
-3. **実装ループ**: What を1つずつ実装し commit する。commit 書式は `COMMIT-FORMAT.md`
+3. **Phase C — 実装ループ**: What を1つずつ実装し commit する。commit 書式は `COMMIT-FORMAT.md`
    に従う。
-4. **クリーンアップ**: Issue 完了で `what-why/tmp/` を破棄する。
+4. **Phase D — クリーンアップ**: Issue 完了で `what-why/tmp/` を破棄する。
 
 ## 台帳ファイル
 
