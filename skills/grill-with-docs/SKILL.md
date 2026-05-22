@@ -37,7 +37,7 @@ If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The ma
 /
 ├── CONTEXT-MAP.md
 ├── what-why/
-│   └── tmp/                          ← grill ワークフローの作業中バッファ（ADR を含む）
+│   └── tmp/                           ← grill ワークフローの作業中バッファ（ADR を含む）
 ├── src/
 │   ├── ordering/
 │   │   └── CONTEXT.md
