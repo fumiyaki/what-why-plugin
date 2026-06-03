@@ -14,7 +14,7 @@ Issue を **grill（質問攻め）** で詰めてから、**What（やること
 
 | 構成要素 | 形式 | 役割 |
 |---|---|---|
-| `/ww-flow` | Command | ワークフロー司令塔。人間が起動を判断する |
+| `/ww-flow` | Command | ワークフロー司令塔。並列実装・レビュー・結合・E2E まで統括する |
 | `grill-with-docs` | Skill | grill フェーズ。仕様理解とドメイン用語集 `CONTEXT.md` の育成 |
 | `what-why` | Skill | `WHAT-WHY.md` 台帳の構造・ドメイン分割・記録・commit 作法 |
 
@@ -35,11 +35,17 @@ Issue を **grill（質問攻め）** で詰めてから、**What（やること
 
 1. **Phase A — grill**: `grill-with-docs` が Issue を質問攻めで詰める。ドメイン用語は
    `CONTEXT.md` に育つ。
-2. **Phase B — 抽出**: grill の理解から What/Why を抽出し `WHAT-WHY.md` へ、How は
-   `what-why/tmp/` へ。
-3. **Phase C — 実装ループ**: What を1つずつ実装し commit する。commit 書式は `COMMIT-FORMAT.md`
-   に従う。
-4. **Phase D — クリーンアップ**: Issue 完了で `what-why/tmp/` を破棄する。
+2. **Phase B — 抽出＋計画**: grill の理解から What/Why を抽出し `WHAT-WHY.md` へ、How は
+   `what-why/tmp/` へ。Issue を PR 単位（Sub-issue or 中粒度グループ）に分割し、PR 依存
+   グラフを作る。
+3. **Phase C — 並列実装**: 依存グラフに従い実装メンバーを worktree 分離で並列 spawn。
+   各メンバーが「1 What/Why = 1 commit」で実装し、fresh レビューメンバーが仕様だけ見て
+   二段レビュー、問題は差し戻す。実装メンバーは残す。
+4. **Phase D — 結合テスト**: 全 PR を結合してテスト。問題は担当メンバーへ差し戻す。
+5. **Phase E — E2E ループ**: Playwright でローカル E2E を実行。失敗は原因を切り分けて
+   担当メンバーへ差し戻し、green になるまで（シナリオ単位3回まで）繰り返す。
+6. **Phase F — クリーンアップ**: メンバーをシャットダウン、git worktree を掃除、
+   `what-why/tmp/` を破棄する。
 
 ## 台帳ファイル
 
