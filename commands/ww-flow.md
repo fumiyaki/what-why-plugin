@@ -57,7 +57,7 @@ grill 完了後、成果を仕分けて実装計画を立てる。
 ## Phase C — 並列実装
 
 依存グラフに従い実装メンバーを spawn し、PR を実装・レビュー・完成させる。実装メンバーは
-完成後も残す。詳細手順は [parallel-impl.md](./ww-flow/parallel-impl.md) に従う。
+完成後も残す。詳細手順は `${CLAUDE_PLUGIN_ROOT}/command-docs/parallel-impl.md` を読んで従う。
 
 要約:
 - 独立 PR は実装メンバーを worktree 分離で並列 spawn、依存 PR は依存元完了後に spawn。
@@ -77,8 +77,7 @@ grill 完了後、成果を仕分けて実装計画を立てる。
 
 ## Phase E — E2E ループ
 
-ローカル環境で Playwright による E2E を回す。詳細手順は [e2e-loop.md](./ww-flow/e2e-loop.md)
-に従う。
+ローカル環境で Playwright による E2E を回す。詳細手順は `${CLAUDE_PLUGIN_ROOT}/command-docs/e2e-loop.md` を読んで従う。
 
 要約:
 - メインが内部サブエージェントを spawn し E2E シナリオ一覧を作らせる。
