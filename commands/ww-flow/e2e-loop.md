@@ -1,6 +1,6 @@
 # Phase E — E2E ループ（詳細手順）
 
-ローカル環境で Playwright MCP（`mcp__plugin_playwright__*`）による E2E を回す。メインは
+ローカル環境で Playwright MCP（`mcp__plugin_playwright_playwright__*`）による E2E を回す。メインは
 判断と統括に徹し、シナリオ作成・原因切り分けは使い捨てサブエージェント、E2E 実行は
 チームメンバーに委譲する。
 
