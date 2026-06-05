@@ -18,7 +18,9 @@
 ## tmp の使い方
 
 - grill フェーズで出た How と ADR は `what-why/tmp/working-notes.md` に蓄積されている。
-- commit 時、この commit の What に対応する How/ADR を tmp から取り出し、
-  How 欄へ最大5行で要約して畳み込む。
-- Issue の全 What を commit し終えたら `what-why/tmp/` ディレクトリごと削除する。
-  永続記録は commit メッセージ（git log）に残るため tmp は消してよい。
+- commit 時、この commit の What に対応する How/ADR を tmp から**読み取り**、
+  How 欄へ最大5行で要約して畳み込む。tmp は読み取るだけで、ここでは削除しない。
+- `what-why/tmp/` の削除は、ワークフロー全体の最終クリーンアップ（`/ww-flow` の Phase F）で
+  **メインセッションだけが**行う。各 commit 時や個々のメンバーが削除してはいけない。途中で
+  消すと、結合テスト・E2E の差し戻しで再 commit する際に参照すべき How/ADR が失われるため。
+  永続記録は commit メッセージ（git log）に残る。
